@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
+from App.Core.views import inicio, listar_Estudiantes
+from App.Seguridad.views import salir, forbbiden
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', inicio, name='index'),
+    path('listar_estudiantes', listar_Estudiantes, name='listar_Estudiantes'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('salir', salir, name='salir'),
+    path('403', forbbiden, name='forbbiden'),
+
 ]
