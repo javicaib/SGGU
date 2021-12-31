@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from App.Estudiante.form import FormularioEstudiante
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from App.Seguridad.decorador import group_required
+from App.Estudiante.models import Estudiante
 
 
 # Create your views here.
@@ -24,3 +27,13 @@ def add_etudiante(request):
         form = FormularioEstudiante()
 
     return render(request, 'c_estudiante.html', {'form': form})
+
+
+@login_required
+@group_required('Admin')
+def listar_estudiantes(request):
+    estudiantes = Estudiante.objects.all()
+    context = {
+        'estudiantes': estudiantes
+    }
+    return render(request, 'listar.html', context)

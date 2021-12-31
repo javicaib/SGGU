@@ -5,28 +5,25 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th style="width: 5%;">#</th>
+
                         <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th style="width: 5%;">Grupo</th>
-                        <th style="width: 5%;">Facultad</th>
-                        <th style="width: 15%;">Acciones</th>
+                        <th>Grupo</th>
+                        <th>Facultad</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                {% for e in estudiantes %}
 
+                <tr>
 
-
-                        <td class="text-center">1</td>
-                        <td class="text-center">{{result}}</td>
-                        <td class="text-center">Roque Sañudo</td>
-                        <td>1403</td>
-                        <td class="text-center">1</td>
+                        <td>{{e.get_full_name}}</td>
+                        <td class="text-center">{{ e.grupo }}</td>
+                        <td class="text-center">Facultad {{ e.facultad }}</td>
                         <td class="text-center"><a class="mx-1 btn" href="#"><i class="fa fa-edit"></i></a><a class="mx-1 btn" href="#"><i class="fa fa-trash"></i></a><a class="mx-1" href="#"></a></td>
 
-                    </tr>
-                    <tr></tr>
+                </tr>
+                 {% endfor %}
                 </tbody>
             </table>
         </div>
