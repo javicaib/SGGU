@@ -16,8 +16,19 @@ def add_etudiante(request):
         if form.is_valid():
             # process the data in form.cleaned_data as required
             # ...
+            usuario = request.POST.get('username')
+            apellidos = request.POST.get('last_name')
+            grupo = request.POST.get('grupo')
+            nombre = request.POST.get('first_name')
+            email = request.POST.get('email')
+            facultad = request.POST.get('facultad')
+            contra = request.POST.get('password')
+            
+            estudiante = Estudiante(first_name=nombre, last_name=apellidos, grupo=grupo, username=usuario, email=email,
+                                    facultad=facultad)
+            estudiante.set_password(contra)
+            estudiante.save()
 
-            form.save()
             form = FormularioEstudiante()
             # redirect to a new URL:
             return HttpResponseRedirect('listar_estudiantes')

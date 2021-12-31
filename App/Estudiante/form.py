@@ -24,4 +24,3 @@ class FormularioEstudiante(forms.ModelForm):
             'grupo': forms.Select(attrs={'class': 'form-control'}),
 
         }
-        extra_kwargs = {"password": {'write_only': True}}

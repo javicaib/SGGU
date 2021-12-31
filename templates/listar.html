@@ -7,8 +7,9 @@
                     <tr>
 
                         <th>Nombre</th>
-                        <th>Grupo</th>
+                        <th>Correo</th>
                         <th>Facultad</th>
+                        <th>Grupo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -18,8 +19,9 @@
                 <tr>
 
                         <td>{{e.get_full_name}}</td>
-                        <td class="text-center">{{ e.grupo }}</td>
+                        <td>{{e.email}}</td>
                         <td class="text-center">Facultad {{ e.facultad }}</td>
+                        <td class="text-center">{{ e.grupo }}</td>
                         <td class="text-center"><a class="mx-1 btn" href="#"><i class="fa fa-edit"></i></a><a class="mx-1 btn" href="#"><i class="fa fa-trash"></i></a><a class="mx-1" href="#"></a></td>
 
                 </tr>
