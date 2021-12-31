@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+{% block body %}
+<div class="container mt-3">
+
+<div class="mb-3">
+<div class="card">
+    <div class="card-header">Agregar nuevo estudiante</div>
+  <div class="card-body">
+      <form method="post">
+          {% csrf_token %}
+
+
+          <div class="mb-3">
+              <label  class="form-label">Nombre</label>
+              {{ form.first_name}}
+          </div>
+
+          <div class="mb-3">
+              <label  class="form-label">Apellidos</label>
+              {{ form.last_name}}
+          </div>
+
+          <div class="mb-3">
+              <label  class="form-label">Usuario</label>
+              {{ form.username}}
+          </div>
+
+          <div class="mb-3">
+              <label  class="form-label">Email</label>
+              {{ form.email}}
+          </div>
+
+          <div class="mb-3">
+              <label  class="form-label">Facultad</label>
+              {{ form.facultad}}
+          </div>
+
+          <div class="mb-3">
+              <label  class="form-label">Grupo</label>
+              {{ form.grupo}}
+          </div>
+
+
+          <div class="mb-3">
+              <label  class="form-label">Contraseña</label>
+              {{ form.password}}
+          </div>
+
+
+
+           <div class="mb-3">
+              <label  class="form-label">Confirme su Contraseña</label>
+              <input type="password" class="form-control" id="id_password" placeholder="Vuelva a escribir la Contraseña">
+          </div>
+
+        <button type="submit" class="btn btn-success">Añadir</button>
+
+      </form>
+
+  </div>
+</div>
+</div>
+
+</div>
+{% endblock body %}

@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from django.template import RequestContext
-from  App.Seguridad.form import FormularioEstudiante
 
 
 # Create your views here.
