@@ -69,3 +69,16 @@ def eliminar_estudiante(request, id):
     estudiante = Estudiante.objects.get(id=id)
     estudiante.delete()
     return HttpResponseRedirect('/listar_estudiantes')
+
+
+@login_required
+@group_required('Admin')
+def editar_estudiante(request, id):
+    estudiante = Estudiante.objects.get(id=id)
+    if request.method == 'GET':
+        form = FormularioEstudiante(intance=estudiante)
+        contexto = {
+            'form': form,
+        }
+
+    return render(request, 'c_estudiante.html', contexto)
