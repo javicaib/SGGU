@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from App.Seguridad.decorador import group_required
 from App.Estudiante.models import Estudiante
 from App.Core.funciones import capitalizar
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -19,6 +20,7 @@ def add_etudiante(request):
         if form.is_valid():
             # process the data in form.cleaned_data as required
             # ...
+
             usuario = request.POST.get('username')
             apellidos = request.POST.get('last_name')
             grupo = request.POST.get('grupo')
@@ -48,7 +50,14 @@ def add_etudiante(request):
 @group_required('Admin')
 def listar_estudiantes(request):
     estudiantes = Estudiante.objects.all()
+    #PAGINACION
+    paginator = Paginator(estudiantes,5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'estudiantes': estudiantes
+        'estudiantes': estudiantes,
+        'page_obj': page_obj,
+
     }
     return render(request, 'listar.html', context)
