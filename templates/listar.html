@@ -10,7 +10,7 @@
                         <th>Correo</th>
                         <th>Facultad</th>
                         <th>Grupo</th>
-                        <th>Acciones</th>
+                        <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,7 +19,10 @@
                 <tr>
 
                         <td>{{e.get_full_name}}</td>
-                        <td>{{e.email}}</td>
+                        <td>
+                            <a href="mailto:{{e.email}}">{{e.email}}</a>
+                        </td>
+
                         <td class="text-center">Facultad {{ e.facultad }}</td>
                         <td class="text-center">{{ e.grupo }}</td>
                         <td class="text-center"><a class="mx-1 btn" href="#"><i class="fa fa-edit"></i></a><a class="mx-1 btn" href="#"><i class="fa fa-trash"></i></a><a class="mx-1" href="#"></a></td>

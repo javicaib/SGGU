@@ -4,9 +4,12 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from App.Seguridad.decorador import group_required
 from App.Estudiante.models import Estudiante
+from App.Core.funciones import capitalizar
 
 
 # Create your views here.
+@login_required
+@group_required('Admin')
 def add_etudiante(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -20,11 +23,12 @@ def add_etudiante(request):
             apellidos = request.POST.get('last_name')
             grupo = request.POST.get('grupo')
             nombre = request.POST.get('first_name')
-            email = request.POST.get('email')
+            email = usuario + '@estudiantes.uci.cu'
             facultad = request.POST.get('facultad')
-            contra = request.POST.get('password')
-            
-            estudiante = Estudiante(first_name=nombre, last_name=apellidos, grupo=grupo, username=usuario, email=email,
+            contra = request.POST.get('password2')
+
+            estudiante = Estudiante(first_name=capitalizar(nombre), last_name=capitalizar(apellidos), grupo=grupo,
+                                    username=usuario, email=email,
                                     facultad=facultad)
             estudiante.set_password(contra)
             estudiante.save()

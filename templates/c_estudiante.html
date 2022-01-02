@@ -26,11 +26,6 @@
           </div>
 
           <div class="mb-3">
-              <label  class="form-label">Email</label>
-              {{ form.email}}
-          </div>
-
-          <div class="mb-3">
               <label  class="form-label">Facultad</label>
               {{ form.facultad}}
           </div>
@@ -50,10 +45,11 @@
 
            <div class="mb-3">
               <label  class="form-label">Confirme su Contraseña</label>
-              <input type="password" class="form-control" id="id_password" placeholder="Vuelva a escribir la Contraseña">
+              {{ form.password2 }}
           </div>
 {{ form.errors }}
         <button type="submit" class="btn btn-success">Añadir</button>
+          <button type="submit" class="btn btn-success">Añadir Otros</button>
 
       </form>
 
