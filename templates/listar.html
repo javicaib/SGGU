@@ -1,93 +1,111 @@
 {% extends 'index.html' %}
 {% block body %}
     <div class="container mt-3">
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead>
-                <tr>
+        <div class="card">
+            <div class="card-header">
+                <h5>Listar Estudiantes</h5>
+            </div>
 
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Facultad</th>
-                    <th>Grupo</th>
-                    <th class="text-center">Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for e in page_obj %}
+            <div class="card-body">
 
-                    <tr>
+                {% if not page_obj %}
 
-                        <td>{{ e.get_full_name }}</td>
-                        <td>
-                            <a href="mailto:{{ e.email }}">{{ e.email }}</a>
-                        </td>
+                    <p>No hay registros</p>
 
-                        <td class="text-center">Facultad {{ e.facultad }}</td>
-                        <td class="text-center">{{ e.grupo }}</td>
-                        <td class="text-center"><a class="mx-1 btn" href="#"><i class="fa fa-edit"></i></a><a
-                                class="mx-1 btn" href="#"><i class="fa fa-trash"></i></a><a class="mx-1" href="#"></a>
-                        </td>
+                {% else %}
+                    <div class="table-responsive ">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
 
-                    </tr>
-                {% endfor %}
-                </tbody>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Facultad</th>
+                                <th>Grupo</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-            </table>
+                            {% for e in page_obj %}
+
+                                <tr>
+
+                                    <td>{{ e.get_full_name }}
+
+                                    </td>
+                                    <td>
+                                        <a href="mailto:{{ e.email }}">{{ e.email }}</a>
+                                    </td>
+
+                                    <td class="text-center">Facultad {{ e.facultad }}</td>
+                                    <td class="text-center">{{ e.grupo }}</td>
+                                    <td class="text-center">
+                                        <a class="mx-1 btn" href="#"><i class="fa fa-edit"></i></a>
+                                        <a class="mx-1 btn" href="{% url 'del_estudiante' e.id %}"><i
+                                                class="fa fa-trash"></i></a>
+
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+                    </div>
+                    <nav aria-label="Page navigation example">
+
+                        <ul class="pagination justify-content-center">
+
+                            {% if not page_obj.has_previous %}
+                                <li class="page-item disabled"><a class="page-link " disabled href="?page=1">&laquo;
+                                    1</a></li>
+                                <li class="page-item disabled"><a class="page-link">Anterior</a></li>
+                            {% endif %}
+
+                            {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link " disabled href="?page=1">&laquo; 1</a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                                </li>
+                            {% endif %}
+                            <li class="page-item disabled"><a class="page-link disabled">{{ page_obj.number }}
+                                de {{ page_obj.paginator.num_pages }}</a></li>
+
+
+
+
+
+
+
+                            {% if page_obj.has_next %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}
+                                    &raquo;</a></li>
+                            {% endif %}
+
+                            {% if not page_obj.has_next %}
+                                <li class="page-item disabled"><a class="page-link">Siguiente</a></li>
+                                <li class="page-item disabled"><a class="page-link"
+                                                                  href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}
+                                    &raquo;</a></li>
+                            {% endif %}
+
+
+                        </ul>
+                    </nav>
+                {% endif %}
 
 
         </div>
-    <nav aria-label="Page navigation example">
-
-<ul class="pagination justify-content-center">
-
-{% if not page_obj.has_previous %}
-            <li class="page-item disabled">    <a  class="page-link " disabled href="?page=1">&laquo; 1</a> </li>
-            <li class="page-item disabled"> <a  class="page-link" >Anterior</a></li>
-        {% endif %}
-
-        {% if page_obj.has_previous %}
-            <li class="page-item">    <a  class="page-link " disabled href="?page=1">&laquo; 1</a> </li>
-            <li class="page-item"> <a  class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
-        {% endif %}
-    <li class="page-item disabled"> <a  class="page-link disabled" >{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>
-
-
-
-
-
-
-
-        {% if page_obj.has_next %}
-         <li class="page-item">     <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a> </li>
-            <li class="page-item">   <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }} &raquo;</a> </li>
-        {% endif %}
-
- {% if not page_obj.has_next %}
-         <li class="page-item disabled">     <a class="page-link" >Siguiente</a> </li>
-            <li class="page-item disabled">   <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }} &raquo;</a> </li>
-        {% endif %}
-
-
-
-</ul>
-</nav>
-
 
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                </div>
+    </div>
 
 {% endblock body %}    

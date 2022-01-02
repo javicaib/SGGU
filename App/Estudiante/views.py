@@ -50,8 +50,8 @@ def add_etudiante(request):
 @group_required('Admin')
 def listar_estudiantes(request):
     estudiantes = Estudiante.objects.all()
-    #PAGINACION
-    paginator = Paginator(estudiantes,5)
+    # PAGINACION
+    paginator = Paginator(estudiantes, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -61,3 +61,11 @@ def listar_estudiantes(request):
 
     }
     return render(request, 'listar.html', context)
+
+
+@login_required
+@group_required('Admin')
+def eliminar_estudiante(request, id):
+    estudiante = Estudiante.objects.get(id=id)
+    estudiante.delete()
+    return HttpResponseRedirect('/listar_estudiantes')

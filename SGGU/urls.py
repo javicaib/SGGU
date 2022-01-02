@@ -18,7 +18,7 @@ from django.urls import path
 from django.urls.conf import include
 from App.Core.views import inicio
 from App.Seguridad.views import salir, forbbiden
-from App.Estudiante.views import add_etudiante,listar_estudiantes
+from App.Estudiante.views import add_etudiante,listar_estudiantes,eliminar_estudiante
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +27,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('salir', salir, name='salir'),
     path('403', forbbiden, name='forbbiden'),
-    path('add_estudiante', add_etudiante, name='add_estudiante')
+    path('add_estudiante', add_etudiante, name='add_estudiante'),
+    path('del_estudiante/<int:id>', eliminar_estudiante, name='del_estudiante')
 
 ]
