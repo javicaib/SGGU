@@ -41,7 +41,7 @@
                                     <td class="text-center">Facultad {{ e.facultad }}</td>
                                     <td class="text-center">{{ e.grupo }}</td>
                                     <td class="text-center">
-                                        <a class="mx-1 btn" href="#"><i class="fa fa-edit"></i></a>
+                                        <a class="mx-1 btn" href="{% url 'edit_estudiante' e.id %}"><i class="fa fa-edit"></i></a>
                                         <a class="mx-1 btn" href="{% url 'del_estudiante' e.id %}"><i
                                                 class="fa fa-trash"></i></a>
 

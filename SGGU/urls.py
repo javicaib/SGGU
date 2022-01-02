@@ -29,6 +29,6 @@ urlpatterns = [
     path('403', forbbiden, name='forbbiden'),
     path('add_estudiante', add_etudiante, name='add_estudiante'),
     path('del_estudiante/<int:id>', eliminar_estudiante, name='del_estudiante'),
-    path('edit_estudiante/<int:id>', editar_estudiante, name='edit_estudiante')
+    path('edit_estudiante/<int:update_id>', editar_estudiante, name='edit_estudiante')
 
 ]

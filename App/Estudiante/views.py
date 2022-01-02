@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from App.Estudiante.form import FormularioEstudiante
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -73,12 +73,28 @@ def eliminar_estudiante(request, id):
 
 @login_required
 @group_required('Admin')
-def editar_estudiante(request, id):
-    estudiante = Estudiante.objects.get(id=id)
-    if request.method == 'GET':
-        form = FormularioEstudiante(intance=estudiante)
-        contexto = {
-            'form': form,
-        }
+def editar_estudiante(request,update_id):
 
-    return render(request, 'c_estudiante.html', contexto)
+    estudiante = get_object_or_404(Estudiante, id=update_id)
+
+    if request.method != 'POST':
+        form = FormularioEstudiante(instance=estudiante)
+
+
+    else:
+        form = FormularioEstudiante(instance=estudiante, data=request.POST)
+        if form.is_valid():
+            estudiante.first_name = capitalizar(form.data.get('first_name'))
+            estudiante.last_name = capitalizar(form.data.get('last_name'))
+            estudiante.username = form.data.get('username')
+            estudiante.grupo = form.data.get('grupo')
+            estudiante.email = form.data.get('username') + '@estudiantes.uci.cu'
+            estudiante.facultad = form.data.get('facultad')
+            contra = form.data.get('password2')
+            estudiante.set_password(contra)
+
+            estudiante.save()
+            return HttpResponseRedirect('/listar_estudiantes')
+
+    context = {'form': form, 'estudiante': estudiante}
+    return render(request, 'c_estudiante.html', context)
