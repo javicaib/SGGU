@@ -1,61 +1,72 @@
 {% extends 'index.html' %}
 {% block body %}
-<div class="container mt-3">
+    <div class="container mt-3">
 
-<div class="mb-3">
-<div class="card">
-    <div class="card-header">Agregar nuevo estudiante</div>
-  <div class="card-body">
-      <form method="post">
-          {% csrf_token %}
-
-
-          <div class="mb-3">
-              <label  class="form-label">Nombre</label>
-              {{ form.first_name}}
-          </div>
-
-          <div class="mb-3">
-              <label  class="form-label">Apellidos</label>
-              {{ form.last_name}}
-          </div>
-
-          <div class="mb-3">
-              <label  class="form-label">Usuario</label>
-              {{ form.username}}
-          </div>
-
-          <div class="mb-3">
-              <label  class="form-label">Facultad</label>
-              {{ form.facultad}}
-          </div>
-
-          <div class="mb-3">
-              <label  class="form-label">Grupo</label>
-              {{ form.grupo}}
-          </div>
+        <div class="mb-3">
+            <div class="card">
+                <div class="card-header">Agregar nuevo estudiante</div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
 
 
-          <div class="mb-3">
-              <label  class="form-label">Contraseña</label>
-              {{ form.password}}
-          </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            {{ form.first_name }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Apellidos</label>
+                            {{ form.last_name }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Usuario</label>
+                            {{ form.username }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Facultad</label>
+                            {{ form.facultad }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Grupo</label>
+                            {{ form.grupo }}
+                        </div>
 
 
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            {{ form.password }}
+                        </div>
 
-           <div class="mb-3">
-              <label  class="form-label">Confirme su Contraseña</label>
-              {{ form.password2 }}
-          </div>
-{{ form.errors }}
-        <button type="submit" class="btn btn-success">Añadir</button>
-          <button type="submit" class="btn btn-success">Añadir Otros</button>
 
-      </form>
+                        <div class="mb-3">
+                            <label class="form-label">Confirme su Contraseña</label>
+                            {{ form.password2 }}
+                        </div>
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
 
-  </div>
-</div>
-</div>
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <strong>{{ error|escape }}</strong>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                    </div>
 
-</div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                        <button type="submit" class="btn btn-success">Añadir</button>
+                        <button type="submit" class="btn btn-success">Añadir Otros</button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock body %}

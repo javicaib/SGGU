@@ -18,7 +18,7 @@ class FormularioEstudiante(forms.ModelForm):
         password = self.cleaned_data.get("password")
         password2 = self.cleaned_data.get("password2")
         if password and password2 and password != password2:
-            raise forms.ValidationError("Passwords do not match")
+            raise forms.ValidationError("Las contraseñas no coinciden")
         return password2
 
     def clean_username(self):
@@ -33,10 +33,9 @@ class FormularioEstudiante(forms.ModelForm):
 
         return validar_patrones(nombre, mensaje)
 
-
     def clean_last_name(self):
         apellido = self.cleaned_data['last_name']
-        mensaje = 'El nombre solo puede tener letras'
+        mensaje = 'El apellido solo puede tener letras'
         return validar_patrones(apellido, mensaje)
 
     class Meta:
