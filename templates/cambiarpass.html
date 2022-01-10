@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% block if %}
+    <main class="form-password container">
+  <form method='post'>
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Cambiar Contraseña</h1>
+
+    <div class="form-floating">
+      <input type="password" class="form-control mb-2" id="floatingInput" name='password'>
+      <label for="floatingInput">Contraseña</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" name='password2'>
+      <label for="floatingPassword">Confirmar Contrase&ntilde;a</label>
+    </div>
+     {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <strong>{{ error|escape }}</strong>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+    <div class="checkbox mb-3">
+
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Cambiar</button>
+
+
+    <p class="mt-5 mb-3 text-muted">&copy; 2021–2021</p>
+  </form>
+</main>
+
+
+{% endblock if %}
+

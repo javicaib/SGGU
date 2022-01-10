@@ -12,14 +12,15 @@ FAC_CHOICES = [
     (6, 'CITEC')
 ]
 GROUP_CHOICES = [
-    (1, 'F1401'),
-    (2, 'F1402'),
-    (3, 'F1403'),
-    (4, 'F1404'),
-    (5, 'F1405')
+    (1, 'G-01'),
+    (2, 'G-02'),
+    (3, 'G-03'),
+    (4, 'G-04'),
+    (5, 'G-05')
 ]
 
 
 class Estudiante(User):
     facultad = models.IntegerField(choices=FAC_CHOICES)
     grupo = models.IntegerField(choices=GROUP_CHOICES)
+    cambiar_pass = models.BooleanField(default=False)

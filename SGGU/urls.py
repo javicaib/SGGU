@@ -18,7 +18,7 @@ from django.urls import path
 from django.urls.conf import include
 from App.Core.views import inicio
 from App.Seguridad.views import salir, forbbiden
-from App.Estudiante.views import add_etudiante,listar_estudiantes,eliminar_estudiante,editar_estudiante
+from App.Estudiante.views import add_etudiante,cambiar_pass ,listar_estudiantes,eliminar_estudiante,editar_estudiante
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('salir', salir, name='salir'),
     path('403', forbbiden, name='forbbiden'),
     path('add_estudiante', add_etudiante, name='add_estudiante'),
+    path('change_password', cambiar_pass, name='cambiar_pass'),
     path('del_estudiante/<int:id>', eliminar_estudiante, name='del_estudiante'),
     path('edit_estudiante/<int:update_id>', editar_estudiante, name='edit_estudiante')
 

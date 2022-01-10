@@ -18,6 +18,7 @@
     
 </head>
 
+
 <body>
     <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button bg-light">
         <div class="container"><a class="navbar-brand" href="#">SGGE</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -40,7 +41,17 @@
             </div>
         </div>
     </nav>
-    {% block body %}
+    {% if request.user.estudiante.cambiar_pass == 0 %}
+        {% block if %}
+        <div class="container mt-3">
+         <div class="alert alert-warning" role="alert">
+  Es la primera vez que se loguea debe cambiar su contraseña aquí --> <a href="/change_password" class="alert-link">Cambiar Contraseña</a>.
+</div>
+        </div>
+        {% endblock if %}
+
+    {% else %}
+        {% block body %}
     <div class="container">
         <section class="features-boxed">
             <div class="container">
@@ -48,13 +59,13 @@
                 <div class="row justify-content-center features">
                     <div class="col-sm-6 col-md-5 col-lg-4 item">
                         <div class="box"><i class="fas fa-user-graduate icon"></i>
-                            <h3 class="name">Listar Estudiantes</h3>
+                            <h3 class="name">Listar Estudiantes </h3>
                             <p class="description">Muestra la lista de los estudiantes registrados</p><a class="learn-more" href="/listar_estudiantes" target="blank">Ir »</a>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-5 col-lg-4 item">
                         <div class="box"><i class="fas fa-user-plus icon"></i>
-                            <h3 class="name">Nuevo Estudiante </h3>
+                            <h3 class="name">Nuevo Estudiante  </h3>
                             <p class="description">Crea un nuevo estudiante</p><a class="learn-more" href="/add_estudiante">Ir »</a>
                         </div>
                     </div>
@@ -94,6 +105,9 @@
         </section>
     </div>
     {% endblock body %}
+    {% endif %}
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
    

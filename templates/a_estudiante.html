@@ -20,7 +20,10 @@
                             {{ form.last_name }}
                         </div>
 
-
+                        <div class="mb-3">
+                            <label class="form-label">Usuario</label>
+                            {{ form.username }}
+                        </div>
 
                         <div class="mb-3">
                             <label class="form-label">Facultad</label>
@@ -33,7 +36,16 @@
                         </div>
 
 
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            {{ form.password }}
+                        </div>
 
+
+                        <div class="mb-3">
+                            <label class="form-label">Confirme su Contraseña</label>
+                            {{ form.password2 }}
+                        </div>
                         {% if form.errors %}
                             {% for field in form %}
                                 {% for error in field.errors %}
