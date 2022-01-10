@@ -40,7 +40,7 @@ def add_etudiante(request):
 
             form = FormularioEstudianteCreate()
             # redirect to a new URL:
-            return HttpResponseRedirect('listar_estudiantes')
+            return HttpResponseRedirect('/listar_estudiantes')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -50,7 +50,7 @@ def add_etudiante(request):
 
 
 @login_required
-@group_required('Admin')
+@group_required('Admin', 'Moderador')
 def listar_estudiantes(request):
     estudiantes = Estudiante.objects.all()
     # PAGINACION
@@ -75,7 +75,7 @@ def eliminar_estudiante(request, id):
 
 
 @login_required
-@group_required('Admin')
+@group_required('Admin', 'Moderador')
 def editar_estudiante(request, update_id):
     estudiante = get_object_or_404(Estudiante, id=update_id)
 

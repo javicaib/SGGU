@@ -11,14 +11,8 @@ class FormularioEstudianteEdit(forms.ModelForm):
     first_name = forms.CharField(max_length=20,
                                  min_length=3,
                                  widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
-    def clean_password2(self):
-        password = self.cleaned_data.get("password")
-        password2 = self.cleaned_data.get("password2")
-        if password and password2 and password != password2:
-            raise forms.ValidationError("Las contraseñas no coinciden")
-        return password2
+
 
     def clean_username(self):
         user = self.cleaned_data['username']
@@ -44,13 +38,11 @@ class FormularioEstudianteEdit(forms.ModelForm):
                   'first_name',
                   'facultad',
                   'grupo',
-                  'password'
 
                   ]
         widgets = {
 
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
             'facultad': forms.Select(attrs={'class': 'form-control'}),
             'grupo': forms.Select(attrs={'class': 'form-control'}),
 
