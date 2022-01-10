@@ -1,6 +1,5 @@
 from django import forms
 from App.Estudiante.models import Estudiante
-from django.forms import ValidationError
 from App.Core.validacion import validar_patrones
 
 

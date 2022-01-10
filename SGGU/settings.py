@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'App.Seguridad',
     'App.Core',
-    'App.Estudiante'
+    'App.Estudiante',
+    'App.Generadores'
 ]
 
 MIDDLEWARE = [
