@@ -27,8 +27,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('salir', salir, name='salir'),
     path('403', forbbiden, name='forbbiden'),
-    path('add_estudiante', add_etudiante, name='add_estudiante'),
-    path('change_password', cambiar_pass, name='cambiar_pass'),
+    path('add_estudiante/', add_etudiante, name='add_estudiante'),
+    path('change_password/', cambiar_pass, name='cambiar_pass'),
     path('del_estudiante/<int:id>', eliminar_estudiante, name='del_estudiante'),
     path('edit_estudiante/<int:update_id>', editar_estudiante, name='edit_estudiante')
 

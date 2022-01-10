@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from App.Estudiante.form import FormularioEstudianteCreate, FormularioEstudianteEdit,FormularioEstudianteCambiarPass
+from App.Estudiante.form import FormularioEstudianteCreate, FormularioEstudianteEdit, FormularioEstudianteCambiarPass
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from App.Seguridad.decorador import group_required
@@ -103,7 +103,7 @@ def editar_estudiante(request, update_id):
 
 
 def cambiar_pass(request):
-    id=request.user.estudiante.id
+    id = request.user.estudiante.id
     estudiante = get_object_or_404(Estudiante, id=id)
     if request.method != 'POST':
         form = FormularioEstudianteCambiarPass(instance=estudiante)
