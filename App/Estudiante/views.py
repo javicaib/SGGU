@@ -7,6 +7,8 @@ from App.Estudiante.models import Estudiante
 from App.Core.funciones import capitalizar
 from django.core.paginator import Paginator
 from App.Generadores.generador import generar_correo_estudiante, generar_usuario
+from django.shortcuts import redirect
+
 
 
 # Create your views here.
@@ -71,7 +73,7 @@ def listar_estudiantes(request):
 def eliminar_estudiante(request, id):
     estudiante = Estudiante.objects.get(id=id)
     estudiante.delete()
-    return HttpResponseRedirect('/listar_estudiantes')
+    return redirect(to='/listar_estudiantes')
 
 
 @login_required

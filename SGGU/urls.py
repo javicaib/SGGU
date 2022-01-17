@@ -18,7 +18,7 @@ from django.urls import path
 from django.urls.conf import include
 from App.Core.views import inicio
 from App.Seguridad.views import salir, forbbiden
-from App.Estudiante.views import add_etudiante,cambiar_pass ,listar_estudiantes,eliminar_estudiante,editar_estudiante
+from App.Estudiante.views import add_etudiante, cambiar_pass, listar_estudiantes, eliminar_estudiante, editar_estudiante
 
 urlpatterns = [
     path('admin/', admin.site.urls),
